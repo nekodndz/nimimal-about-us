@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The Minimal company. Handcrafted furniture."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+      integrity="sha512-4xo8blKMVCiXpTaLzQSLSw3KFOVPWhm/TRtuPVc4WG6kUgjH6J03IBuG7JZPkcWMxJ5huwaBpOpnwYElP/m6wg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Minimal | Handcrafted Furniture</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <section class="first">
+      <div class="container">
+        <h1>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          ipsum iure consequuntur voluptatibus consectetur ratione laborum
+          aspernatur mollitia. Quidem quo ratione eveniet eum qui repellendus ex
+          neque consequuntur suscipit veritatis!
+        </h1>
+        <p class="text-first">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
+          ea excepturi dolorem. Quos ducimus obcaecati placeat assumenda
+          accusamus laborum dicta? Blanditiis, quo vel odit eos velit nemo harum
+          nihil sit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Facere inventore sed, quaerat dicta laborum aliquid obcaecati rerum
+          iure, dignissimos maxime sapiente natus! Iusto non commodi repellendus
+          veniam. Reprehenderit, obcaecati? Fugiat.lorem Lorem ipsum dolor sit
+          amet consectetur, adipisicing elit. Perferendis ea excepturi dolorem.
+          Quos ducimus obcaecati placeat assumenda accusamus laborum dicta?
+          Blanditiis, quo vel odit eos velit nemo harum nihil sit. Lorem ipsum
+          dolor sit amet, consectetur adipisicing elit. Facere inventore sed,
+          quaerat dicta laborum aliquid obcaecati rerum iure, dignissimos maxime
+          sapiente natus! Iusto non commodi repellendus veniam. Reprehenderit,
+          obcaecati? Fugiat.lorem
+        </p>
+      </div>
+    </section>
+    <section class="about-us">
+      <div class="container">
+        <div class="about-us-container">
+          <h2 class="about-us-title">About us</h2>
+          <h3 class="about-us-subtitle">
+            Our craftsmanship: creating unique handmade furniture
+          </h3>
+          <p class="about-us-text text">
+            Discover the inspiration behind our modern and minimalist designs,
+            and see how we bring them to life through our skilled craftsmanship.
+          </p>
+          <ul class="advantages-list">
+            <li class="advantages-list-item">
+              <p
+                class="advantages-subtitle animate-number"
+                data-end="5"
+                data-symbol="+"
+              >
+                0+
+              </p>
+              <p class="advantages-text text">
+                Years of experience creating handcrafted furniture
+              </p>
+            </li>
+            <li class="advantages-list-item">
+              <p
+                class="advantages-subtitle animate-number"
+                data-end="100"
+                data-symbol="%"
+              >
+                40%
+              </p>
+              <p class="advantages-text text">
+                Sustainably sourced materials used in all of our furniture
+              </p>
+            </li>
+            <li class="advantages-list-item">
+              <p
+                class="advantages-subtitle animate-number"
+                data-end="500"
+                data-symbol="+"
+              >
+                300+
+              </p>
+              <p class="advantages-text text">
+                Unique furniture designs crafted by our skilled artisans
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="container-img">
+          <picture>
+            <source
+              srcset="
+                ./img/img-about-us-desk.jpg   1x,
+                ./img/img-about-us-desk2x.jpg 2x
+              "
+              media="(min-width: 1440px)"
+            />
+            <source
+              srcset="
+                ./img/img-about-us-tab.jpg   1x,
+                ./img/img-about-us-tab2x.jpg 2x
+              "
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="
+                ./img/img-about-us-mob.jpg   1x,
+                ./img/img-about-us-mob2x.jpg 2x
+              "
+              media="(min-width: 375px)"
+            />
+            <img
+              src="./img/img-about-us-desk.jpg"
+              alt="white sofa"
+              width="704"
+              class="white-sofa-img"
+            />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <script>
+      var animateNumbers = document.querySelectorAll(".animate-number");
+
+      function animateValue(element, start, end, duration, symbol = "") {
+        var range = end - start;
+        var startTime = new Date().getTime();
+
+        function updateValue() {
+          var currentTime = new Date().getTime();
+          var elapsed = currentTime - startTime;
+          var progress = elapsed / duration;
+
+          if (progress > 1) progress = 1;
+
+          var value = start + range * progress;
+          element.textContent = Math.round(value) + symbol;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateValue);
+          }
+        }
+
+        updateValue();
+      }
+
+      animateNumbers.forEach(function (element) {
+        var startNumber = parseInt(element.textContent);
+        var endNumber = parseInt(element.getAttribute("data-end"));
+        var symbol = element.getAttribute("data-symbol");
+
+        animateValue(element, startNumber, endNumber, 2000, symbol); // 2000 - тривалість анімації в мілісекундах
+      });
+    </script>
+  </body>
+</html>
