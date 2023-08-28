@@ -128,9 +128,33 @@
         </div>
       </div>
     </section>
+    <section class="first">
+      <div class="container">
+        <h1>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          ipsum iure consequuntur voluptatibus consectetur ratione laborum
+          aspernatur mollitia. Quidem quo ratione eveniet eum qui repellendus ex
+          neque consequuntur suscipit veritatis!
+        </h1>
+        <p class="text-first">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
+          ea excepturi dolorem. Quos ducimus obcaecati placeat assumenda
+          accusamus laborum dicta? Blanditiis, quo vel odit eos velit nemo harum
+          nihil sit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Facere inventore sed, quaerat dicta laborum aliquid obcaecati rerum
+          iure, dignissimos maxime sapiente natus! Iusto non commodi repellendus
+          veniam. Reprehenderit, obcaecati? Fugiat.lorem Lorem ipsum dolor sit
+          amet consectetur, adipisicing elit. Perferendis ea excepturi dolorem.
+          Quos ducimus obcaecati placeat assumenda accusamus laborum dicta?
+          Blanditiis, quo vel odit eos velit nemo harum nihil sit. Lorem ipsum
+          dolor sit amet, consectetur adipisicing elit. Facere inventore sed,
+          quaerat dicta laborum aliquid obcaecati rerum iure, dignissimos maxime
+          sapiente natus! Iusto non commodi repellendus veniam. Reprehenderit,
+          obcaecati? Fugiat.lorem
+        </p>
+      </div>
+    </section>
     <script>
-      var animateNumbers = document.querySelectorAll(".animate-number");
-
       function animateValue(element, start, end, duration, symbol = "") {
         var range = end - start;
         var startTime = new Date().getTime();
@@ -153,13 +177,39 @@
         updateValue();
       }
 
-      animateNumbers.forEach(function (element) {
-        var startNumber = parseInt(element.textContent);
-        var endNumber = parseInt(element.getAttribute("data-end"));
-        var symbol = element.getAttribute("data-symbol");
+      function startAnimation() {
+        var elementsToAnimate = document.querySelectorAll(".animate");
 
-        animateValue(element, startNumber, endNumber, 2000, symbol); // 2000 - тривалість анімації в мілісекундах
-      });
+        elementsToAnimate.forEach(function (element) {
+          var startNumber = parseInt(element.textContent);
+          var endNumber = parseInt(element.getAttribute("data-end"));
+          var symbol = element.getAttribute("data-symbol");
+
+          animateValue(element, startNumber, endNumber, 2000, symbol);
+        });
+      }
+
+      function handleScroll() {
+        var section = document.querySelector(".about-us"); // Замініть на відповідний селектор
+        var sectionTop = section.getBoundingClientRect().top;
+        var viewportHeight = window.innerHeight;
+
+        if (sectionTop < viewportHeight / 2) {
+          startAnimation();
+          window.removeEventListener("scroll", handleScroll);
+        }
+      }
+
+      function handleHashChange() {
+        var hash = window.location.hash;
+
+        if (hash === "#about") {
+          startAnimation();
+        }
+      }
+
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("hashchange", handleHashChange);
     </script>
   </body>
 </html>
